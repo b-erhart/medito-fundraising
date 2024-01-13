@@ -1,0 +1,50 @@
+/* Add ress CSS resets for consistent styles accross browsers. */
+/* https://github.com/filipelinhares/ress */
+@import url("https://unpkg.com/ress/dist/ress.min.css");
+
+/* Add custom fonts. */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Base variables used accross the page. */
+:root {
+  --bg: #212121;
+  --bg-2: #323232;
+
+  --font: #e8e6e4;
+  --font-2: #a8a6a4;
+
+  --accent-1: #327ca0;
+  --accent-1-alt: #22688a;
+  --accent-2: #d0854a;
+  --accent-2-alt: #b26830;
+
+  --breakpoint-1: 768px;
+
+  --border-radius: 1rem;
+}
+
+html {
+  font-family: 'Lato', sans-serif;
+  background-color: var(--bg);
+  color: var(--font);
+}
+
+body {
+  max-width: var(--breakpoint-1);
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+}
+
+h1 {
+  color: var(--accent-1);
+}
+
+.card {
+  background-color: var(--bg-2);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+}
