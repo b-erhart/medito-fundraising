@@ -2,6 +2,7 @@
 import TitleSection from '@/components/TitleSection.vue'
 import ProgressSection from '@/components/ProgressSection.vue'
 import QnaSection from '@/components/QnaSection.vue'
+import DonationSection from '@/components/DonationSection.vue'
 
 import Divider from 'primevue/divider'
 
@@ -18,10 +19,16 @@ import { config } from '@/config'
   <Divider />
   <main>
     <QnaSection :config="config" />
+    <Divider />
+    <DonationSection :config="config" />
   </main>
 </template>
 
-<style scoped>
+<style>
+body {
+  background-color: var(--surface-ground);
+}
+
 header,
 main,
 footer {

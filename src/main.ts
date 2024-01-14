@@ -1,5 +1,5 @@
 import 'primeicons/primeicons.css'
-import 'primevue/resources/themes/lara-dark-blue/theme.css'
+import 'primevue/resources/themes/lara-dark-green/theme.css'
 
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config'

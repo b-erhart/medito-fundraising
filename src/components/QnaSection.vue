@@ -55,7 +55,8 @@ function onQuestionFormSubmission() {
           <Button :onClick="() => onQuestionFormSubmission()" style="width: fit-content; margin-left: auto"
             :disabled="!emailIsValid || !questionIsValid">Submit</Button>
         </form>
-        <InlineMessage v-else severity="success">Thank you for your message. We will get back to you as soon as
+        <InlineMessage v-else severity="success" style="width: 100%;">Thank you for your message. We will get back to
+          you as soon as
           we can.</InlineMessage>
       </AccordionTab>
     </Accordion>

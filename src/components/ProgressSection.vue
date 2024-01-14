@@ -48,7 +48,7 @@ section {
 }
 
 /* change progress bar color */
-:deep(.p-progressbar .p-progressbar-value) {
+/* :deep(.p-progressbar .p-progressbar-value) {
   background-color: green;
-}
+} */
 </style>
