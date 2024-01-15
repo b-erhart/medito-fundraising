@@ -11,10 +11,17 @@ import { config } from '@/config'
 
 <template>
   <header class="card">
-    <TitleSection title="Our Fundrasing Campaign"
-      shortDescription="This is just a simple exemple for a fundraising campaign. It doesn't really do anything, except showing how a campaign might look.">
+    <TitleSection
+      :title="config.titleSection.title"
+      :shortDescription="config.titleSection.shortDescription"
+    >
     </TitleSection>
-    <ProgressSection :moneyRaised="70" :moneyGoal="150" currencySymbol="$" />
+    <ProgressSection
+      :moneyRaised="7000.43"
+      :moneyGoal="15000"
+      currencySymbol="$"
+      :paymentLinks="config.donationSection.paymentLinks"
+    />
   </header>
   <Divider />
   <main>

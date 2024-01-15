@@ -3,6 +3,12 @@ export interface Config {
     title: string
     shortDescription: string
   }
+  donationSection: {
+    paymentLinks: {
+      currencyDescription: string
+      url: URL
+    }[]
+  }
   qnaSection: {
     contactForm: {
       enabled: boolean
@@ -13,8 +19,7 @@ export interface Config {
       answer: string
     }[]
   }
-  donationSection: {
-    minAmount: number
+  rewardsSection: {
     currencySymbol: string
     rewards: {
       title: string
@@ -29,6 +34,18 @@ export const config: Config = {
     title: 'Our Fundraising Campaign',
     shortDescription:
       "This is just a simple example for a fundraising campaign. It doesn't really do anything, except showing how a campaign might look."
+  },
+  donationSection: {
+    paymentLinks: [
+      {
+        currencyDescription: '$ US-Dollar',
+        url: new URL('https://donate.stripe.com/test_fZecQ9eXy16e7xSfYZ')
+      },
+      {
+        currencyDescription: '€ Euro',
+        url: new URL('https://donate.stripe.com/test_cN203n8za16ef0k5kk')
+      }
+    ]
   },
   qnaSection: {
     contactForm: {
@@ -53,8 +70,7 @@ export const config: Config = {
       }
     ]
   },
-  donationSection: {
-    minAmount: 1.0,
+  rewardsSection: {
     currencySymbol: '$',
     rewards: [
       {
