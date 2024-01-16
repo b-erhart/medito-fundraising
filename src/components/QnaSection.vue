@@ -1,18 +1,28 @@
 <script setup lang="ts">
 import type { Config } from '@/config'
-import Accordion from 'primevue/accordion'
-import AccordionTab from 'primevue/accordiontab'
-import Button from 'primevue/button'
-import InlineMessage from 'primevue/inlinemessage'
-import InputText from 'primevue/inputtext'
-import Textarea from 'primevue/textarea'
+import {
+  AccordionContent,
+  AccordionHeader,
+  AccordionItem,
+  AccordionRoot,
+  AccordionTrigger
+} from 'radix-vue'
+import { Icon } from '@iconify/vue'
+import { useTextareaAutosize } from '@vueuse/core'
 import { validate } from 'email-validator'
 import { computed, ref } from 'vue'
 
 defineProps<{ config: Config }>()
-const email = ref("")
-const questionsMessage = ref("")
+const email = ref('')
+const { textarea: questionsTextarea, input: questionsMessage } = useTextareaAutosize()
 const questionsSubmitted = ref(false)
+
+const spamCheck = { a: Math.floor(10 * Math.random()), b: Math.floor(10 * Math.random()) }
+const spamCheckInput = ref('')
+
+if (!questionsMessage.value) {
+  questionsMessage.value = ''
+}
 
 const emailIsValid = computed(() => {
   return validate(email.value)
@@ -30,66 +40,117 @@ function onQuestionFormSubmission() {
 </script>
 
 <template>
-  <section>
-    <h2>Q&A</h2>
-    <Accordion :multiple="true">
-      <AccordionTab v-for="(qnaEntry, index) in config.qnaSection.qnas" :key="index" :header="qnaEntry.question">
-        {{ qnaEntry.answer }}
-      </AccordionTab>
-      <AccordionTab v-if="config.qnaSection.contactForm.enabled" :header="config.qnaSection.contactForm.heading">
-        <form v-if="!questionsSubmitted" class="questions-form">
-          <div class="labelled-input">
-            <label for="email-address">Email address</label>
-            <span class="p-input-icon-right">
-              <InputText id="email-address" v-model="email" type="email" placeholder="yourname@example.org"
-                :class="emailIsValid ? '' : 'p-invalid'" style="width: 100%;" />
-              <i v-if="emailIsValid" class="pi pi-check" style="color: var(--green-500);" />
-              <i v-else class="pi pi-times" style="color: var(--red-200);" />
-            </span>
+  <section class="mb-12">
+    <h2 class="mb-3 text-center text-2xl font-bold md:text-left">Q&A</h2>
+    <AccordionRoot type="multiple" class="flex flex-col">
+      <template v-for="(qnaEntry, index) in config.qnaSection.qnas" :key="index">
+        <AccordionItem :value="`${index}`" class="border-b border-gray-600">
+          <AccordionHeader>
+            <AccordionTrigger
+              class="trigger flex w-full flex-row items-center gap-3 py-3 hover:underline"
+            >
+              <span class="w-full text-left font-medium">{{ qnaEntry.question }}</span>
+              <Icon icon="radix-icons:chevron-down" class="animate-icon flex-none text-xl" />
+            </AccordionTrigger>
+          </AccordionHeader>
+          <AccordionContent class="animate-content overflow-hidden">
+            <p class="pb-3 text-gray-300">{{ qnaEntry.answer }}</p>
+          </AccordionContent>
+        </AccordionItem>
+      </template>
+      <AccordionItem :value="`${config.qnaSection.qnas.length}`" class="border-b border-gray-600">
+        <AccordionHeader>
+          <AccordionTrigger
+            class="trigger flex w-full flex-row items-center gap-3 py-3 hover:underline"
+          >
+            <span class="w-full text-left font-medium">Any more questions?</span>
+            <Icon icon="radix-icons:chevron-down" class="animate-icon flex-none text-xl" />
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent class="animate-content overflow-hidden">
+          <div>
+            <form>
+              <div class="mb-3 flex flex-col text-gray-200">
+                <label>Email address*</label>
+                <input
+                  v-model="email"
+                  placeholder="..."
+                  class="form-input m-[1px] mt-1 rounded-md border-none bg-gray-800 shadow ring-1 ring-gray-600 focus:ring-gray-200 md:w-1/2"
+                  :class="
+                    emailIsValid || email === ''
+                      ? 'ring-gray-600 focus:ring-gray-200'
+                      : 'ring-red-500 focus:ring-red-200'
+                  "
+                />
+                <span v-if="!emailIsValid && email !== ''" class="text-sm text-red-500"
+                  >Invalid email address</span
+                >
+              </div>
+              <div class="mb-3 flex flex-col text-gray-200">
+                <label>Your questions*</label>
+                <textarea
+                  v-model="questionsMessage"
+                  ref="questionsTextarea"
+                  placeholder="Dear medito team, ..."
+                  class="form-textarea scrollbar-hidden m-[1px] mt-1 resize-none rounded-md border-none bg-gray-800 shadow ring-1 ring-gray-600 focus:ring-gray-200"
+                  :class="
+                    questionIsValid || questionsMessage === ''
+                      ? 'ring-gray-600 focus:ring-gray-200'
+                      : 'ring-red-500 focus:ring-red-300'
+                  "
+                />
+                <span
+                  v-if="!questionIsValid && questionsMessage !== ''"
+                  class="text-sm text-red-500"
+                  >Question is too short</span
+                >
+              </div>
+              <button
+                :disabled="!emailIsValid || !questionIsValid"
+                type="submit"
+                class="relative mb-3 mt-2 h-10 w-full rounded-lg border-none bg-green-600 px-3 hover:bg-green-700 disabled:bg-green-900 disabled:text-gray-400 md:w-fit"
+              >
+                Send message
+              </button>
+            </form>
           </div>
-          <div class="labelled-input">
-            <label for="questions">Your questions</label>
-            <Textarea id="questions" v-model="questionsMessage" placeholder="Tell us about your questions here..."
-              autoResize rows="6" :class="questionIsValid ? '' : 'p-invalid'" />
-          </div>
-          <Button :onClick="() => onQuestionFormSubmission()" style="width: fit-content; margin-left: auto"
-            :disabled="!emailIsValid || !questionIsValid">Submit</Button>
-        </form>
-        <InlineMessage v-else severity="success" style="width: 100%;">Thank you for your message. We will get back to
-          you as soon as
-          we can.</InlineMessage>
-      </AccordionTab>
-    </Accordion>
+        </AccordionContent>
+      </AccordionItem>
+    </AccordionRoot>
   </section>
 </template>
 
 <style scoped>
-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+.animate-content[data-state='open'] {
+  animation: slideDown 300ms;
+}
+.animate-content[data-state='closed'] {
+  animation: slideUp 300ms;
 }
 
-.questions-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.animate-icon {
+  color: var(--grass-10);
+  transition: transform 300ms;
+}
+.trigger[data-state='open'] > .animate-icon {
+  transform: rotate(180deg);
 }
 
-.labelled-input {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
 }
 
-.p-inputtextarea {
-  width: 100%;
-}
-
-/* fix PrimeVUE bug where the icon of the accordion tab is displayed too small if the header  
-text is too long */
-:deep(.p-accordion-header-action svg) {
-  min-width: 1rem;
+@keyframes slideUp {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
 }
 </style>

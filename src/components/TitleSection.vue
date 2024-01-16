@@ -4,23 +4,9 @@ const props = defineProps<{ title: string; shortDescription: string }>()
 
 <template>
   <div class="heading">
-    <h1>{{ props.title }}</h1>
-    <p class="short-description">{{ shortDescription }}</p>
+    <h1 class="mb-5 text-center text-3xl font-bold md:text-left">{{ props.title }}</h1>
+    <p>{{ shortDescription }}</p>
   </div>
 </template>
 
-<style scoped>
-.heading {
-  margin-bottom: 2rem;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 0.7rem;
-}
-
-.short-description {
-  text-align: center;
-  font-size: 1.1rem;
-}
-</style>
+<style scoped></style>
