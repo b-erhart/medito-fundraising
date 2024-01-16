@@ -17,9 +17,6 @@ const email = ref('')
 const { textarea: questionsTextarea, input: questionsMessage } = useTextareaAutosize()
 const questionsSubmitted = ref(false)
 
-const spamCheck = { a: Math.floor(10 * Math.random()), b: Math.floor(10 * Math.random()) }
-const spamCheckInput = ref('')
-
 if (!questionsMessage.value) {
   questionsMessage.value = ''
 }
@@ -70,7 +67,7 @@ function onQuestionFormSubmission() {
         <AccordionContent class="animate-content overflow-hidden">
           <div>
             <form>
-              <div class="mb-3 flex flex-col text-gray-200">
+              <div class="mb-3 flex flex-col text-gray-300">
                 <label>Email address*</label>
                 <input
                   v-model="email"
@@ -86,7 +83,7 @@ function onQuestionFormSubmission() {
                   >Invalid email address</span
                 >
               </div>
-              <div class="mb-3 flex flex-col text-gray-200">
+              <div class="mb-3 flex flex-col text-gray-300">
                 <label>Your questions*</label>
                 <textarea
                   v-model="questionsMessage"

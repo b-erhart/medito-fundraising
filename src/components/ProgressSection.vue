@@ -42,8 +42,8 @@ const progress = computed(() => +((moneyRaisedAnimated.value / props.moneyGoal) 
   <div class="flex flex-col gap-6 rounded-xl bg-gray-800 p-6 shadow ring-1 ring-gray-600">
     <div>
       <div class="mb-2 flex flex-row">
-        <h3 class="w-fit flex-shrink-0 flex-grow-0 text-sm font-medium text-gray-200">Progress</h3>
-        <span class="flex-1 text-right text-sm font-medium text-gray-200">{{ progress }}%</span>
+        <h3 class="w-fit flex-shrink-0 flex-grow-0 text-sm font-medium text-gray-300">Progress</h3>
+        <span class="flex-1 text-right text-sm font-medium text-gray-300">{{ progress }}%</span>
       </div>
       <ProgressRoot
         v-model="progress"
@@ -76,7 +76,7 @@ const progress = computed(() => +((moneyRaisedAnimated.value / props.moneyGoal) 
       </p>
     </div>
     <div>
-      <h3 class="mb-2 text-sm font-medium text-gray-200">Donate</h3>
+      <h3 class="mb-2 text-sm font-medium text-gray-300">Donate</h3>
       <form :action="paymentUrl" target="_blank" class="flex w-full flex-col gap-3 sm:flex-row">
         <div class="relative w-full">
           <div class="absolute inset-0 rounded-lg bg-amber-500 blur-sm"></div>
@@ -103,7 +103,7 @@ const progress = computed(() => +((moneyRaisedAnimated.value / props.moneyGoal) 
                   v-for="(paymentLink, index) in paymentLinks"
                   :key="index"
                   :value="paymentLink.url.href"
-                  class="relative flex cursor-pointer select-none flex-row items-center gap-1 rounded-md p-2 data-[disabled]:pointer-events-none data-[highlighted]:bg-gray-800 data-[disabled]:text-gray-400 data-[highlighted]:text-gray-200 data-[highlighted]:outline-none"
+                  class="relative flex cursor-pointer select-none flex-row items-center gap-1 rounded-md p-2 data-[disabled]:pointer-events-none data-[highlighted]:bg-gray-800 data-[disabled]:text-gray-400 data-[highlighted]:text-gray-300 data-[highlighted]:outline-none"
                 >
                   <SelectItemIndicator class="">
                     <Icon icon="radix-icons:check" />
@@ -119,9 +119,10 @@ const progress = computed(() => +((moneyRaisedAnimated.value / props.moneyGoal) 
       </form>
     </div>
     <div>
-      <h3 class="mb-2 text-sm font-medium text-gray-200">Rewards</h3>
+      <h3 class="mb-2 text-sm font-medium text-gray-300">Rewards</h3>
       <p class="mb-0 mt-0">
-        Check out the <a href="#rewards" class="text-green-500 underline">rewards</a> you can
+        Check out the
+        <a href="#rewards" class="text-green-500 underline hover:text-green-600">rewards</a> you can
         receive for donating.
       </p>
     </div>

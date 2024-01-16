@@ -21,7 +21,7 @@ defineProps<{ config: Config }>()
           </div>
           <div class="flex flex-col gap-3">
             <h3 class="text-center text-lg font-medium sm:text-left">{{ reward.title }}</h3>
-            <p class="text-center text-gray-200 sm:text-left">{{ reward.description }}</p>
+            <p class="text-center text-gray-300 sm:text-left">{{ reward.description }}</p>
           </div>
         </div>
       </template>
