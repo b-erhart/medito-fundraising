@@ -6,7 +6,7 @@ export interface Config {
   donationSection: {
     paymentLinks: {
       currencyDescription: string
-      url: URL
+      url: string
     }[]
   }
   qnaSection: {
@@ -39,11 +39,11 @@ export const config: Config = {
     paymentLinks: [
       {
         currencyDescription: '$ US-Dollar',
-        url: new URL('https://donate.stripe.com/test_fZecQ9eXy16e7xSfYZ')
+        url: 'https://donate.stripe.com/test_fZecQ9eXy16e7xSfYZ'
       },
       {
         currencyDescription: '€ Euro',
-        url: new URL('https://donate.stripe.com/test_cN203n8za16ef0k5kk')
+        url: 'https://donate.stripe.com/test_cN203n8za16ef0k5kk'
       }
     ]
   },

@@ -32,13 +32,13 @@
 import DonationForm from '@/components/donation/DonationForm.vue'
 import LatestDonations from '@/components/donation/LatestDonations.vue'
 import ProgressBar from '@/components/donation/ProgressBar.vue'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
 const props = defineProps<{
   moneyRaised: number
   moneyGoal: number
   currencySymbol: string
-  paymentLinks: { currencyDescription: string; url: URL }[]
+  paymentLinks: { currencyDescription: string; url: string }[]
 }>()
 
 const progress = computed(() => +((props.moneyRaised / props.moneyGoal) * 100).toFixed(1))

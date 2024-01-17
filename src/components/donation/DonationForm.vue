@@ -9,32 +9,45 @@
         Donate
       </button>
     </div>
-    <SelectRoot v-model="paymentUrl">
+    <SelectRoot v-model="paymentUrl" :required="true" name="Select donation currency">
       <SelectTrigger
-        class="flex h-10 w-full flex-shrink-0 flex-grow-0 flex-row items-center gap-2 rounded-lg px-3 shadow ring-1 ring-gray-600 sm:w-fit"
+        class="flex h-10 w-full flex-shrink-0 flex-grow-0 flex-row items-center gap-2 rounded-lg px-3 shadow ring-1 ring-gray-600 sm:w-fit sm:min-w-32"
       >
         <SelectValue placeholder="Select currency..." class="flex-1 text-left" />
         <Icon icon="radix-icons:chevron-down" class="flex-shrink-0 flex-grow-0 text-xl" />
       </SelectTrigger>
       <SelectPortal>
         <SelectContent
+          :avoidCollisions="true"
           class="rounded-lg bg-gray-700 p-3 px-3 shadow ring-1 ring-gray-600 data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1"
         >
+          <SelectScrollUpButton
+            class="flex h-fit cursor-default items-center justify-center bg-gray-700"
+          >
+            <Icon icon="radix-icons:chevron-up" />
+          </SelectScrollUpButton>
           <SelectViewport>
             <SelectItem
               v-for="(paymentLink, index) in paymentLinks"
               :key="index"
-              :value="paymentLink.url.href"
-              class="relative flex cursor-pointer select-none flex-row items-center gap-1 rounded-md p-2 data-[disabled]:pointer-events-none data-[highlighted]:bg-gray-800 data-[disabled]:text-gray-400 data-[highlighted]:text-gray-300 data-[highlighted]:outline-none"
+              :value="paymentLink.url"
+              class="relative my-1 flex cursor-pointer select-none flex-row items-center gap-1 rounded-md p-2 data-[disabled]:pointer-events-none data-[highlighted]:bg-gray-800 data-[disabled]:text-gray-400 data-[highlighted]:text-gray-300 data-[highlighted]:outline-none"
+              :class="
+                paymentLink.url === paymentUrl
+                  ? 'bg-gray-900 font-bold data-[highlighted]:bg-gray-900'
+                  : ''
+              "
             >
-              <SelectItemIndicator class="">
-                <Icon icon="radix-icons:check" />
-              </SelectItemIndicator>
               <SelectItemText>
                 {{ paymentLink.currencyDescription }}
               </SelectItemText>
             </SelectItem>
           </SelectViewport>
+          <SelectScrollDownButton
+            class="flex h-fit cursor-default items-center justify-center bg-gray-700"
+          >
+            <Icon icon="radix-icons:chevron-down" />
+          </SelectScrollDownButton>
         </SelectContent>
       </SelectPortal>
     </SelectRoot>
@@ -43,12 +56,16 @@
 
 <script setup lang="ts">
 import {
+  ScrollAreaRoot,
+  ScrollAreaViewport,
   SelectContent,
   SelectItem,
   SelectItemIndicator,
   SelectItemText,
   SelectPortal,
   SelectRoot,
+  SelectScrollDownButton,
+  SelectScrollUpButton,
   SelectTrigger,
   SelectValue,
   SelectViewport
@@ -57,10 +74,10 @@ import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 
 const props = defineProps<{
-  paymentLinks: { currencyDescription: string; url: URL }[]
+  paymentLinks: { currencyDescription: string; url: string }[]
 }>()
 
-const paymentUrl = ref(props.paymentLinks[0].url.href)
+const paymentUrl = ref(props.paymentLinks[0].url)
 </script>
 
 <style></style>
