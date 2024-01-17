@@ -18,7 +18,7 @@ import { config } from '@/config'
     </div>
   </header>
   <main class="p-4 md:mx-auto md:max-w-screen-lg">
-    <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+    <div class="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2">
       <TitleSection
         :title="config.titleSection.title"
         :shortDescription="config.titleSection.shortDescription"
@@ -31,7 +31,6 @@ import { config } from '@/config'
         :paymentLinks="config.donationSection.paymentLinks"
       />
     </div>
-    <hr class="mb-12 mt-12 border border-gray-600" />
     <QnaSection :config="config" />
     <DonationSection :config="config" />
   </main>

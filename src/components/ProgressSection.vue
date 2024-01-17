@@ -13,6 +13,7 @@ import {
   SelectViewport
 } from 'radix-vue'
 import { Icon } from '@iconify/vue'
+import moment from 'moment'
 import { computed, onMounted, ref } from 'vue'
 
 const props = defineProps<{
@@ -36,6 +37,26 @@ onMounted(() => {
 })
 
 const progress = computed(() => +((moneyRaisedAnimated.value / props.moneyGoal) * 100).toFixed(1))
+
+const latestDonationsData: { name: string; amount: number; time: Date }[] = [
+  {
+    name: 'Ed Hocchuli',
+    amount: 50,
+    time: new Date(moment(Date.now()).subtract(2, 'hours').format())
+  },
+  {
+    name: 'someone',
+    amount: 10,
+    time: new Date(moment(Date.now()).subtract(15, 'days').format())
+  },
+  {
+    name: 'Taysom Hill',
+    amount: 500,
+    time: new Date(Date.now())
+  }
+]
+
+const latestDonations = ref(latestDonationsData.sort((a, b) => b.time.getTime() - a.time.getTime()))
 </script>
 
 <template>
@@ -43,37 +64,53 @@ const progress = computed(() => +((moneyRaisedAnimated.value / props.moneyGoal) 
     <div>
       <div class="mb-2 flex flex-row">
         <h3 class="w-fit flex-shrink-0 flex-grow-0 text-sm font-medium text-gray-300">Progress</h3>
-        <span class="flex-1 text-right text-sm font-medium text-gray-300">{{ progress }}%</span>
+        <span class="block w-full text-right text-sm font-medium text-gray-300"
+          >{{ progress }}%</span
+        >
       </div>
-      <ProgressRoot
-        v-model="progress"
-        class="relative mb-2 mt-2 h-7 w-full overflow-hidden rounded-lg bg-gray-700"
-      >
-        <ProgressIndicator
-          class="ease-[cubic-bezier(0.65, 0, 0.35, 1)] h-full w-full bg-green-600 transition-transform duration-[660ms]"
-          :style="`transform: translateX(-${100 - progress}%)`"
-        />
-      </ProgressRoot>
-      <p>
-        <em class="text-lg font-bold not-italic text-green-500"
-          >{{
-            moneyRaised.toLocaleString('en-us', {
+      <div class="rounded-lg bg-gray-900 p-3 shadow ring-1 ring-gray-600">
+        <ProgressRoot
+          v-model="progress"
+          class="relative mb-1 mt-1 h-7 w-full overflow-hidden rounded-lg bg-gray-700"
+        >
+          <ProgressIndicator
+            class="ease-[cubic-bezier(0.65, 0, 0.35, 1)] h-full w-full bg-green-600 transition-transform duration-[660ms]"
+            :style="`transform: translateX(-${100 - progress}%)`"
+          />
+        </ProgressRoot>
+        <p>
+          <em class="text-lg font-bold not-italic text-green-500"
+            >{{
+              moneyRaised.toLocaleString('en-us', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+              })
+            }}
+          </em>
+          of
+          {{
+            moneyGoal.toLocaleString('en-us', {
               style: 'currency',
               currency: 'USD',
               minimumFractionDigits: 2
             })
           }}
-        </em>
-        of
-        {{
-          moneyGoal.toLocaleString('en-us', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 2
-          })
-        }}
-        donated.
-      </p>
+          donated.
+        </p>
+      </div>
+    </div>
+    <div>
+      <h3 class="mb-2 text-sm font-medium text-gray-300">Latest Donations</h3>
+      <div class="rounded-lg bg-gray-900 p-3 shadow ring-1 ring-gray-600">
+        <template v-for="(donation, index) in latestDonations" :key="index">
+          <p>
+            <a class="font-medium text-green-500">${{ donation.amount }}</a> by {{ donation.name }}
+            <a class="text-gray-400">· {{ moment(donation.time).fromNow() }}</a>
+          </p>
+          <hr v-if="index !== latestDonations.length - 1" class="border-1 my-2 border-gray-600" />
+        </template>
+      </div>
     </div>
     <div>
       <h3 class="mb-2 text-sm font-medium text-gray-300">Donate</h3>
