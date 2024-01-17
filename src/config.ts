@@ -1,101 +1,82 @@
-export interface Config {
-  titleSection: {
-    title: string
-    shortDescription: string
-  }
-  donationSection: {
-    paymentLinks: {
-      currencyDescription: string
-      url: string
-    }[]
-  }
-  qnaSection: {
-    contactForm: {
-      enabled: boolean
-      heading: string
-    }
-    qnas: {
-      question: string
-      answer: string
-    }[]
-  }
-  rewardsSection: {
-    currencySymbol: string
-    rewards: {
-      title: string
-      amount: number
-      description: string
-    }[]
-  }
-}
+import type { Config } from '@/modules/interfaces'
 
 export const config: Config = {
   titleSection: {
-    title: 'Our Fundraising Campaign',
-    shortDescription:
-      "This is just a simple example for a fundraising campaign. It doesn't really do anything, except showing how a campaign might look."
+    title: 'Translating Our Meditations into 3 New Languages',
+    description: ` 
+      With the rise in popularity of medito, the request for meditations in more languages
+      has increased significantly, to the point that is has become the most popular request.<br><br>
+      Translating our meditations into French, Portuguese, and Spanish, will provide millions more
+      people with our free meditations. Since medito is run largely by volunteers, we don't have
+      the capacity to do the translations ourselves. That is why we want to hire InterAudio Corp.
+      to translate and record our meditations. This service is not cheap though, which is why we
+      need your help. Make our meditations accessible to millions more people, we will need $15,000.
+      `
   },
   donationSection: {
     paymentLinks: [
       {
-        currencyDescription: '$ US-Dollar',
+        currencyDescription: '$ USD',
         url: 'https://donate.stripe.com/test_fZecQ9eXy16e7xSfYZ'
       },
       {
-        currencyDescription: '€ Euro',
+        currencyDescription: '€ EUR',
         url: 'https://donate.stripe.com/test_cN203n8za16ef0k5kk'
+      },
+      {
+        currencyDescription: '£ GBP',
+        url: 'https://donate.stripe.com/test_3cs17rg1Cg184lG28a'
+      },
+      {
+        currencyDescription: '₹ INR',
+        url: 'https://donate.stripe.com/test_fZe17r02E4iq5pK28b'
       }
     ]
   },
   qnaSection: {
-    contactForm: {
-      enabled: true,
-      heading: 'Any more questions?'
-    },
     qnas: [
       {
-        question: 'This is the most pressing Question people have about our fundraiser.',
+        question: 'Why did you choose these three languages?',
         answer:
-          "This is indeed a very important question. And the answer is that... we don't actually know"
+          "We chose these languages based on an analysis of our user base and hired a market research firm to determine the languages that would reach the most possible users. We're sorry if your language is not part of the campaign, but we can't possibly add support for all languages at once."
       },
       {
-        question:
-          "Another question people have about our fundraiser and this is a really really really long question. Why does it have to be so long you may ask. Well, that's because we need to test some stuff, okay? You can't really test without testing out the limits...",
-        answer: 'Well at least the answer is short ;)'
+        question: 'Will you add more languages in the future?',
+        answer:
+          'That depends on the outcome of this fundraiser, and whether the new languages will have the anticipated effect. If this project is successful, we will probably add more languages in the future.'
       },
       {
-        question: 'One final question',
+        question: "What happens if you don't raise the targetted amount of money?",
         answer:
-          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer'
+          'Depending on how much money we raise, we may do translations to one or two languages. If it is too little for that, the money will go towards the development of the app and our server infrastructure.'
       }
     ]
   },
   rewardsSection: {
-    currencySymbol: '$',
     rewards: [
       {
-        title: 'Thank You Letter',
-        amount: 8.0,
+        title: 'Medito International Postcard',
+        amount: '$8',
         description:
-          'We will send you a letter personally signed by all team members, thanking you for your support.'
+          'We will send you a postcard with the "Medito International" motive, personally signed by all team members.'
       },
       {
-        title: 'Mug',
-        amount: 15.0,
+        title: 'Medito International Mug',
+        amount: '$15',
         description:
           'You will receive our limited edition campaign mug. This is the only way to get one.'
       },
       {
-        title: 'Shirt',
-        amount: 30.0,
+        title: 'Medito International Shirt',
+        amount: '$30',
         description:
           'You will receive our limited edition campaign shirt. This is the only way to get one.'
       },
       {
         title: 'Shirt, Mug and Cap',
-        amount: 100.0,
+        amount: '$100',
         description:
-          'Our top supportes will receive all the campaign swag we have to offer. Also, you will receive an exclusive handmade campaign cap.'
+          'Our top supportes will receive all the campaign swag we have to offer. Also, you will receive an exclusive campaign baseball cap.'
       }
     ]
   }

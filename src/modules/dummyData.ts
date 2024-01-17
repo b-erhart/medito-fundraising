@@ -1,5 +1,5 @@
 import moment from 'moment'
-import type { Donation, FinancialDetails } from '@/endpoints'
+import type { Donation, FinancialDetails } from '@/modules/interfaces'
 
 /**
  * Delay randomly for 20ms to 600ms before returning the data.

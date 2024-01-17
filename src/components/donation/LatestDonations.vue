@@ -1,4 +1,5 @@
 <template>
+  <p class="mb-2 text-sm font-medium text-gray-300">Latest Donations</p>
   <div class="rounded-lg bg-gray-900 p-3 shadow ring-1 ring-gray-600">
     <LoadingIndicator v-if="!loaded" />
     <template v-else>
@@ -21,7 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import { getLatestDonations, type Donation } from '@/endpoints'
+import { getLatestDonations } from '@/endpoints'
+import type { Donation } from '@/modules/interfaces'
 import { formatCurrency } from '@/modules/format'
 import LoadingIndicator from '@/components/base/LoadingIndicator.vue'
 import moment from 'moment'

@@ -1,4 +1,5 @@
 <template>
+  <p class="mb-2 text-sm font-medium text-gray-300">Donate</p>
   <form :action="paymentUrl" target="_blank" class="flex w-full flex-col gap-3 sm:flex-row">
     <div class="relative w-full">
       <div class="absolute inset-0 rounded-lg bg-amber-500 blur-sm"></div>

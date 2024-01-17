@@ -1,4 +1,8 @@
 <template>
+  <div class="mb-2 flex flex-row">
+    <p class="w-fit flex-shrink-0 flex-grow-0 text-sm font-medium text-gray-300">Progress</p>
+    <p class="block w-full text-right text-sm font-medium text-gray-300">{{ progress }}%</p>
+  </div>
   <div class="rounded-lg bg-gray-900 p-3 shadow ring-1 ring-gray-600">
     <LoadingIndicator v-if="!loaded" />
     <template v-else>
@@ -13,7 +17,7 @@
       </ProgressRoot>
       <p>
         <em class="text-lg font-bold not-italic text-green-500"
-          >{{ formatCurrency(moneyRaisedAnimated, currency) }}
+          >{{ formatCurrency(moneyDonated, currency) }}
         </em>
         of {{ formatCurrency(moneyGoal, currency) }} donated.
       </p>
@@ -31,14 +35,14 @@ import { computed, ref } from 'vue'
 const loaded = ref(false)
 const currency = ref('')
 const moneyGoal = ref(0)
-const moneyRaisedAnimated = ref(0)
+const moneyDonated = ref(0)
 
 async function update() {
   const financialDetails = await getFinancialDetails()
 
   currency.value = financialDetails.currency
   moneyGoal.value = financialDetails.moneyGoal
-  moneyRaisedAnimated.value = financialDetails.moneyDonated
+  moneyDonated.value = financialDetails.moneyDonated
   loaded.value = true
 }
 
@@ -46,11 +50,11 @@ update()
 setInterval(update, 5000)
 
 const progress = computed(() => {
-  if (moneyRaisedAnimated.value === 0 && moneyGoal.value === 0) {
+  if (moneyDonated.value === 0 && moneyGoal.value === 0) {
     return 0
   }
 
-  return +((moneyRaisedAnimated.value / moneyGoal.value) * 100).toFixed(1)
+  return +((moneyDonated.value / moneyGoal.value) * 100).toFixed(1)
 })
 </script>
 

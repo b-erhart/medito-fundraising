@@ -1,18 +1,12 @@
 <template>
   <section class="flex flex-col gap-6 rounded-xl bg-gray-800 p-6 shadow ring-1 ring-gray-600">
     <div>
-      <div class="mb-2 flex flex-row">
-        <p class="w-fit flex-shrink-0 flex-grow-0 text-sm font-medium text-gray-300">Progress</p>
-        <p class="block w-full text-right text-sm font-medium text-gray-300">{{ progress }}%</p>
-      </div>
       <ProgressBar />
     </div>
     <div>
-      <p class="mb-2 text-sm font-medium text-gray-300">Latest Donations</p>
       <LatestDonations />
     </div>
     <div>
-      <p class="mb-2 text-sm font-medium text-gray-300">Donate</p>
       <DonationForm :paymentLinks="paymentLinks" />
     </div>
     <div>
@@ -30,16 +24,10 @@
 import DonationForm from '@/components/donation/DonationForm.vue'
 import LatestDonations from '@/components/donation/LatestDonations.vue'
 import ProgressBar from '@/components/donation/ProgressBar.vue'
-import { computed } from 'vue'
+import { config } from '@/config'
+import { ref } from 'vue'
 
-const props = defineProps<{
-  moneyRaised: number
-  moneyGoal: number
-  currencySymbol: string
-  paymentLinks: { currencyDescription: string; url: string }[]
-}>()
-
-const progress = computed(() => +((props.moneyRaised / props.moneyGoal) * 100).toFixed(1))
+const paymentLinks = ref(config.donationSection.paymentLinks)
 </script>
 
 <style scoped></style>

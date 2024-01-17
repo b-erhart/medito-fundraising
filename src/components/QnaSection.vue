@@ -2,7 +2,7 @@
   <section class="mb-12">
     <h2 class="mb-3 text-center text-2xl font-bold md:text-left">Q&A</h2>
     <AccordionRoot type="multiple" class="flex flex-col">
-      <template v-for="qnaEntry in config.qnaSection.qnas" :key="JSON.stringify(qnaEntry)">
+      <template v-for="qnaEntry in qnas" :key="JSON.stringify(qnaEntry)">
         <AccordionItem :value="qnaEntry.question" class="border-b border-gray-600">
           <AccordionHeader>
             <AccordionTrigger
@@ -17,7 +17,7 @@
           </AccordionContent>
         </AccordionItem>
       </template>
-      <AccordionItem :value="`${config.qnaSection.qnas.length}`" class="border-b border-gray-600">
+      <AccordionItem :value="`questions-form-${qnas.length}`" class="border-b border-gray-600">
         <AccordionHeader>
           <AccordionTrigger
             class="trigger flex w-full flex-row items-center gap-3 py-3 hover:underline"
@@ -38,7 +38,6 @@
 
 <script setup lang="ts">
 import QuestionsForm from '@/components/qna/QuestionsForm.vue'
-import type { Config } from '@/config'
 import {
   AccordionContent,
   AccordionHeader,
@@ -47,14 +46,17 @@ import {
   AccordionTrigger
 } from 'radix-vue'
 import { Icon } from '@iconify/vue'
+import { config } from '@/config'
+import { ref } from 'vue'
 
-defineProps<{ config: Config }>()
+const qnas = ref(config.qnaSection.qnas)
 </script>
 
 <style scoped>
 .animate-content[data-state='open'] {
   animation: slideDown 300ms;
 }
+
 .animate-content[data-state='closed'] {
   animation: slideUp 300ms;
 }
@@ -63,6 +65,7 @@ defineProps<{ config: Config }>()
   color: var(--grass-10);
   transition: transform 300ms;
 }
+
 .trigger[data-state='open'] > .animate-icon {
   transform: rotate(180deg);
 }
