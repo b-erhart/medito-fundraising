@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import TitleSection from '@/components/TitleSection.vue'
-import ProgressSection from '@/components/ProgressSection.vue'
-import QnaSection from '@/components/QnaSection.vue'
 import DonationSection from '@/components/DonationSection.vue'
+import QnaSection from '@/components/QnaSection.vue'
+import RewardsSection from '@/components/RewardsSection.vue'
+import TitleSection from '@/components/TitleSection.vue'
 
 import { config } from '@/config'
 </script>
@@ -24,7 +24,7 @@ import { config } from '@/config'
         :shortDescription="config.titleSection.shortDescription"
       >
       </TitleSection>
-      <ProgressSection
+      <DonationSection
         :moneyRaised="7000.43"
         :moneyGoal="15000"
         currencySymbol="$"
@@ -32,7 +32,7 @@ import { config } from '@/config'
       />
     </div>
     <QnaSection :config="config" />
-    <DonationSection :config="config" />
+    <RewardsSection :config="config" />
   </main>
   <footer class="mt-8 h-fit flex-shrink-0 flex-grow-0 border-t border-gray-700 px-4 py-3">
     <div class="flex flex-col items-center gap-3 text-center md:mx-auto md:max-w-screen-lg">
