@@ -9,9 +9,10 @@
         Donate
       </button>
     </div>
-    <SelectRoot v-model="paymentUrl" :required="true" name="Select donation currency">
+    <SelectRoot v-model="paymentUrl" :required="true" aria-label="Select donation currency">
       <SelectTrigger
         class="flex h-10 w-full flex-shrink-0 flex-grow-0 flex-row items-center gap-2 rounded-lg px-3 shadow ring-1 ring-gray-600 sm:w-fit sm:min-w-32"
+        aria-label="Open donation currency selection"
       >
         <SelectValue placeholder="Select currency..." class="flex-1 text-left" />
         <Icon icon="radix-icons:chevron-down" class="flex-shrink-0 flex-grow-0 text-xl" />

@@ -2,7 +2,9 @@
   <section class="flex flex-col gap-6 rounded-xl bg-gray-800 p-6 shadow ring-1 ring-gray-600">
     <div>
       <div class="mb-2 flex flex-row">
-        <h3 class="w-fit flex-shrink-0 flex-grow-0 text-sm font-medium text-gray-300">Progress</h3>
+        <span class="w-fit flex-shrink-0 flex-grow-0 text-sm font-medium text-gray-300"
+          >Progress</span
+        >
         <span class="block w-full text-right text-sm font-medium text-gray-300"
           >{{ progress }}%</span
         >
@@ -10,15 +12,15 @@
       <ProgressBar :moneyRaised="moneyRaised" :moneyGoal="moneyGoal" currency="USD" />
     </div>
     <div>
-      <h3 class="mb-2 text-sm font-medium text-gray-300">Latest Donations</h3>
+      <span class="mb-2 text-sm font-medium text-gray-300">Latest Donations</span>
       <LatestDonations />
     </div>
     <div>
-      <h3 class="mb-2 text-sm font-medium text-gray-300">Donate</h3>
+      <span class="mb-2 text-sm font-medium text-gray-300">Donate</span>
       <DonationForm :paymentLinks="paymentLinks" />
     </div>
     <div>
-      <h3 class="mb-2 text-sm font-medium text-gray-300">Rewards</h3>
+      <span class="mb-2 text-sm font-medium text-gray-300">Rewards</span>
       <p class="mb-0 mt-0">
         Check out the
         <a href="#rewards" class="text-green-500 underline hover:text-green-600">rewards</a> you can
