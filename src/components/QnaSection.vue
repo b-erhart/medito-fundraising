@@ -2,8 +2,8 @@
   <section class="mb-12">
     <h2 class="mb-3 text-center text-2xl font-bold md:text-left">Q&A</h2>
     <AccordionRoot type="multiple" class="flex flex-col">
-      <template v-for="(qnaEntry, index) in config.qnaSection.qnas" :key="index">
-        <AccordionItem :value="`${index}`" class="border-b border-gray-600">
+      <template v-for="qnaEntry in config.qnaSection.qnas" :key="JSON.stringify(qnaEntry)">
+        <AccordionItem :value="qnaEntry.question" class="border-b border-gray-600">
           <AccordionHeader>
             <AccordionTrigger
               class="trigger flex w-full flex-row items-center gap-3 py-3 hover:underline"

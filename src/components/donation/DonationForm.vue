@@ -9,7 +9,12 @@
         Donate
       </button>
     </div>
-    <SelectRoot v-model="paymentUrl" :required="true" aria-label="Select donation currency">
+    <SelectRoot
+      v-model="paymentUrl"
+      :required="true"
+      aria-label="Select donation currency"
+      name="currency"
+    >
       <SelectTrigger
         class="flex h-10 w-full flex-shrink-0 flex-grow-0 flex-row items-center gap-2 rounded-lg px-3 shadow ring-1 ring-gray-600 sm:w-fit sm:min-w-32"
         aria-label="Open donation currency selection"
@@ -29,8 +34,8 @@
           </SelectScrollUpButton>
           <SelectViewport>
             <SelectItem
-              v-for="(paymentLink, index) in paymentLinks"
-              :key="index"
+              v-for="paymentLink in paymentLinks"
+              :key="JSON.stringify(paymentLink)"
               :value="paymentLink.url"
               class="relative my-1 flex cursor-pointer select-none flex-row items-center gap-1 rounded-md p-2 data-[disabled]:pointer-events-none data-[highlighted]:bg-gray-800 data-[disabled]:text-gray-400 data-[highlighted]:text-gray-300 data-[highlighted]:outline-none"
               :class="
@@ -57,11 +62,8 @@
 
 <script setup lang="ts">
 import {
-  ScrollAreaRoot,
-  ScrollAreaViewport,
   SelectContent,
   SelectItem,
-  SelectItemIndicator,
   SelectItemText,
   SelectPortal,
   SelectRoot,

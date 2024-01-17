@@ -1,5 +1,8 @@
 <template>
-  <form>
+  <div v-if="submitted" class="m-[1px] mb-3 flex flex-row items-center gap-2 text-green-500">
+    <p>Message sent. Thank you for your questions - we will get back to you as soon as we can.</p>
+  </div>
+  <template v-else>
     <div class="mb-3 flex flex-col text-gray-300">
       <label>Email address*</label>
       <input
@@ -35,22 +38,23 @@
     </div>
     <button
       :disabled="!emailIsValid || !questionIsValid"
-      type="submit"
+      @click="submit()"
       class="relative mb-3 mt-2 h-10 w-full rounded-lg border-none bg-green-600 px-3 hover:bg-green-700 disabled:bg-green-900 disabled:text-gray-400 md:w-fit"
     >
       Send message
     </button>
-  </form>
+  </template>
 </template>
 
 <script setup lang="ts">
+import { sendQuestions } from '@/endpoints'
 import { useTextareaAutosize } from '@vueuse/core'
 import { validate } from 'email-validator'
 import { computed, ref } from 'vue'
 
 const email = ref('')
 const { textarea: questionsTextarea, input: questionsMessage } = useTextareaAutosize()
-const questionsSubmitted = ref(false)
+const submitted = ref(false)
 
 if (!questionsMessage.value) {
   questionsMessage.value = ''
@@ -64,10 +68,9 @@ const questionIsValid = computed(() => {
   return questionsMessage.value.length > 10
 })
 
-function onQuestionFormSubmission() {
-  questionsSubmitted.value = true
-
-  // send off the questions to an API endpoint
+function submit() {
+  submitted.value = true
+  sendQuestions(email.value, questionsMessage.value)
 }
 </script>
 

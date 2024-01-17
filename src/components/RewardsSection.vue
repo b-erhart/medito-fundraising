@@ -1,8 +1,8 @@
 <template>
   <section id="rewards">
     <h2 class="mb-3 text-center text-2xl font-bold sm:text-left">Rewards</h2>
-    <div class="flex flex-col gap-6">
-      <template v-for="(reward, index) in config.rewardsSection.rewards" :key="index">
+    <div class="flex flex-col gap-5">
+      <template v-for="reward in config.rewardsSection.rewards" :key="JSON.stringify(reward)">
         <div
           class="flex flex-col gap-3 rounded-xl bg-gray-800 p-6 shadow ring-1 ring-gray-600 sm:flex-row sm:gap-6"
         >
