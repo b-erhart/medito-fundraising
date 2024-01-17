@@ -6,11 +6,11 @@ export const config: Config = {
     description: ` 
       With the rise in popularity of medito, the request for meditations in more languages
       has increased significantly, to the point that is has become the most popular request.<br><br>
-      Translating our meditations into French, Portuguese, and Spanish, will provide millions more
+      Translating our meditations into French, Portuguese, and Spanish will provide millions more
       people with our free meditations. Since medito is run largely by volunteers, we don't have
       the capacity to do the translations ourselves. That is why we want to hire InterAudio Corp.
-      to translate and record our meditations. This service is not cheap though, which is why we
-      need your help. Make our meditations accessible to millions more people, we will need $15,000.
+      to translate and record our meditations. Since this high-quality service is not cheap, we
+      need your help. To make our meditations accessible to millions more people, we will need $15,000.
       `
   },
   donationSection: {
