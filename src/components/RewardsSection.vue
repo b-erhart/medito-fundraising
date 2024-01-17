@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import { type Config } from '@/config'
-
-defineProps<{ config: Config }>()
-</script>
-
 <template>
   <section id="rewards">
     <h2 class="mb-3 text-center text-2xl font-bold sm:text-left">Rewards</h2>
@@ -28,5 +22,11 @@ defineProps<{ config: Config }>()
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { type Config } from '@/config'
+
+defineProps<{ config: Config }>()
+</script>
 
 <style scoped></style>

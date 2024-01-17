@@ -1,66 +1,5 @@
-<script setup lang="ts">
-import {
-  ProgressIndicator,
-  ProgressRoot,
-  SelectContent,
-  SelectItem,
-  SelectItemIndicator,
-  SelectItemText,
-  SelectPortal,
-  SelectRoot,
-  SelectTrigger,
-  SelectValue,
-  SelectViewport
-} from 'radix-vue'
-import { Icon } from '@iconify/vue'
-import moment from 'moment'
-import { computed, onMounted, ref } from 'vue'
-
-const props = defineProps<{
-  moneyRaised: number
-  moneyGoal: number
-  currencySymbol: string
-  paymentLinks: { currencyDescription: string; url: URL }[]
-}>()
-
-const paymentUrl = ref(props.paymentLinks[0].url.href)
-
-let moneyRaisedAnimated = ref(0)
-onMounted(() => {
-  let interval = setInterval(() => {
-    if (moneyRaisedAnimated.value !== props.moneyRaised) {
-      moneyRaisedAnimated.value = props.moneyRaised
-    } else {
-      clearInterval(interval)
-    }
-  }, 100)
-})
-
-const progress = computed(() => +((moneyRaisedAnimated.value / props.moneyGoal) * 100).toFixed(1))
-
-const latestDonationsData: { name: string; amount: number; time: Date }[] = [
-  {
-    name: 'Ed Hocchuli',
-    amount: 50,
-    time: new Date(moment(Date.now()).subtract(2, 'hours').format())
-  },
-  {
-    name: 'someone',
-    amount: 10,
-    time: new Date(moment(Date.now()).subtract(15, 'days').format())
-  },
-  {
-    name: 'Taysom Hill',
-    amount: 500,
-    time: new Date(Date.now())
-  }
-]
-
-const latestDonations = ref(latestDonationsData.sort((a, b) => b.time.getTime() - a.time.getTime()))
-</script>
-
 <template>
-  <div class="flex flex-col gap-6 rounded-xl bg-gray-800 p-6 shadow ring-1 ring-gray-600">
+  <section class="flex flex-col gap-6 rounded-xl bg-gray-800 p-6 shadow ring-1 ring-gray-600">
     <div>
       <div class="mb-2 flex flex-row">
         <h3 class="w-fit flex-shrink-0 flex-grow-0 text-sm font-medium text-gray-300">Progress</h3>
@@ -68,92 +7,15 @@ const latestDonations = ref(latestDonationsData.sort((a, b) => b.time.getTime() 
           >{{ progress }}%</span
         >
       </div>
-      <div class="rounded-lg bg-gray-900 p-3 shadow ring-1 ring-gray-600">
-        <ProgressRoot
-          v-model="progress"
-          class="relative mb-1 mt-1 h-7 w-full overflow-hidden rounded-lg bg-gray-700"
-        >
-          <ProgressIndicator
-            class="ease-[cubic-bezier(0.65, 0, 0.35, 1)] h-full w-full bg-green-600 transition-transform duration-[660ms]"
-            :style="`transform: translateX(-${100 - progress}%)`"
-          />
-        </ProgressRoot>
-        <p>
-          <em class="text-lg font-bold not-italic text-green-500"
-            >{{
-              moneyRaised.toLocaleString('en-us', {
-                style: 'currency',
-                currency: 'USD',
-                minimumFractionDigits: 2
-              })
-            }}
-          </em>
-          of
-          {{
-            moneyGoal.toLocaleString('en-us', {
-              style: 'currency',
-              currency: 'USD',
-              minimumFractionDigits: 2
-            })
-          }}
-          donated.
-        </p>
-      </div>
+      <ProgressBar :moneyRaised="moneyRaised" :moneyGoal="moneyGoal" currency="USD" />
     </div>
     <div>
       <h3 class="mb-2 text-sm font-medium text-gray-300">Latest Donations</h3>
-      <div class="rounded-lg bg-gray-900 p-3 shadow ring-1 ring-gray-600">
-        <template v-for="(donation, index) in latestDonations" :key="index">
-          <p>
-            <a class="font-medium text-green-500">${{ donation.amount }}</a> by {{ donation.name }}
-            <a class="text-gray-400">· {{ moment(donation.time).fromNow() }}</a>
-          </p>
-          <hr v-if="index !== latestDonations.length - 1" class="border-1 my-2 border-gray-600" />
-        </template>
-      </div>
+      <LatestDonations />
     </div>
     <div>
       <h3 class="mb-2 text-sm font-medium text-gray-300">Donate</h3>
-      <form :action="paymentUrl" target="_blank" class="flex w-full flex-col gap-3 sm:flex-row">
-        <div class="relative w-full">
-          <div class="absolute inset-0 rounded-lg bg-amber-500 blur-sm"></div>
-          <button
-            type="submit"
-            class="relative h-10 w-full rounded-lg border-none bg-amber-600 px-3 hover:bg-amber-700"
-          >
-            Donate
-          </button>
-        </div>
-        <SelectRoot v-model="paymentUrl">
-          <SelectTrigger
-            class="flex h-10 w-full flex-shrink-0 flex-grow-0 flex-row items-center gap-2 rounded-lg px-3 shadow ring-1 ring-gray-600 sm:w-fit"
-          >
-            <SelectValue placeholder="Select currency..." class="flex-1 text-left" />
-            <Icon icon="radix-icons:chevron-down" class="flex-shrink-0 flex-grow-0 text-xl" />
-          </SelectTrigger>
-          <SelectPortal>
-            <SelectContent
-              class="rounded-lg bg-gray-700 p-3 px-3 shadow ring-1 ring-gray-600 data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1"
-            >
-              <SelectViewport>
-                <SelectItem
-                  v-for="(paymentLink, index) in paymentLinks"
-                  :key="index"
-                  :value="paymentLink.url.href"
-                  class="relative flex cursor-pointer select-none flex-row items-center gap-1 rounded-md p-2 data-[disabled]:pointer-events-none data-[highlighted]:bg-gray-800 data-[disabled]:text-gray-400 data-[highlighted]:text-gray-300 data-[highlighted]:outline-none"
-                >
-                  <SelectItemIndicator class="">
-                    <Icon icon="radix-icons:check" />
-                  </SelectItemIndicator>
-                  <SelectItemText>
-                    {{ paymentLink.currencyDescription }}
-                  </SelectItemText>
-                </SelectItem>
-              </SelectViewport>
-            </SelectContent>
-          </SelectPortal>
-        </SelectRoot>
-      </form>
+      <DonationForm :paymentLinks="paymentLinks" />
     </div>
     <div>
       <h3 class="mb-2 text-sm font-medium text-gray-300">Rewards</h3>
@@ -163,7 +25,23 @@ const latestDonations = ref(latestDonationsData.sort((a, b) => b.time.getTime() 
         receive for donating.
       </p>
     </div>
-  </div>
+  </section>
 </template>
+
+<script setup lang="ts">
+import DonationForm from '@/components/donation/DonationForm.vue'
+import LatestDonations from '@/components/donation/LatestDonations.vue'
+import ProgressBar from '@/components/donation/ProgressBar.vue'
+import { computed, ref } from 'vue'
+
+const props = defineProps<{
+  moneyRaised: number
+  moneyGoal: number
+  currencySymbol: string
+  paymentLinks: { currencyDescription: string; url: URL }[]
+}>()
+
+const progress = computed(() => +((props.moneyRaised / props.moneyGoal) * 100).toFixed(1))
+</script>
 
 <style scoped></style>
