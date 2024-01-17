@@ -2,8 +2,9 @@
   <div class="rounded-lg bg-gray-900 p-3 shadow ring-1 ring-gray-600">
     <template v-for="(donation, index) in latestDonations" :key="index">
       <p>
-        <a class="font-medium text-green-500">${{ donation.amount }}</a> by {{ donation.name }}
-        <a class="text-gray-400">· {{ moment(donation.time).fromNow() }}</a>
+        <span class="font-medium text-green-500">${{ donation.amount }}</span> by
+        {{ donation.name }}
+        <span class="text-gray-400">· {{ moment(donation.time).fromNow() }}</span>
       </p>
       <hr v-if="index !== latestDonations.length - 1" class="border-1 my-2 border-gray-600" />
     </template>
