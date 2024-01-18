@@ -23,6 +23,7 @@ export interface ContentConfig {
     }[]
   }
   thankYouMessage: string
+  footerText: string
 }
 
 export interface FinancialDetails {

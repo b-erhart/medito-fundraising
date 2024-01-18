@@ -1,7 +1,8 @@
 import { getDummyFinancialDetails, getDummyLatestDonations } from '@/modules/dummyData'
 import type { Donation, FinancialDetails } from '@/modules/interfaces'
 
-export const ENDPOINT_UPDATE_INTERVAL = 5000
+// Interval at which to refresh live data by calling getFinancialDetails and getLatestDonations.
+export const ENDPOINT_UPDATE_INTERVAL = 5000 // milliseconds
 
 export async function getFinancialDetails(): Promise<FinancialDetails> {
   // Hint: This function is expected to throw an error if the data can't be fetched successfully.

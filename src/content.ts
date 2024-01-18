@@ -1,8 +1,11 @@
 import type { ContentConfig } from '@/modules/interfaces'
 
 export const content: ContentConfig = {
+  // Title section consisting of the fundraiser title description.
   titleSection: {
+    // Fundraiser title.
     title: 'Translating Our Meditations into 3 New Languages',
+    // Fundraiser description (HTML elements can be used here).
     description: ` 
       With the rise in popularity of medito, the request for meditations in more languages
       has increased significantly, to the point that is has become the most popular request.<br><br>
@@ -13,11 +16,14 @@ export const content: ContentConfig = {
       need your help. To make our meditations accessible to millions more people, we will need $15,000.
       `
   },
+  // Donation section consisting of the live status of the fundraiser and the donation button.
   donationSection: {
     // Define available currencies and their corresponding Stripe Payment Links.
     paymentLinks: [
       {
+        // Text that will be displayed in the currency drop-down.
         currencyDescription: '$ USD',
+        // URL of the Stripe Payment Link for US-Dollar donations.
         url: 'https://donate.stripe.com/test_fZecQ9eXy16e7xSfYZ'
       },
       {
@@ -34,6 +40,7 @@ export const content: ContentConfig = {
       }
     ]
   },
+  // Q&A section consisting of collapsable Q&As aswell as a question form.
   qnaSection: {
     qnas: [
       {
@@ -53,6 +60,7 @@ export const content: ContentConfig = {
       }
     ]
   },
+  // Rewards section displaying possible rewards.
   rewardsSection: {
     rewards: [
       {
@@ -82,5 +90,10 @@ export const content: ContentConfig = {
     ]
   },
   // Message to display upon successful donation.
-  thankYouMessage: 'Donation successful. Thank you for your support!'
+  thankYouMessage: 'Donation successful. Thank you for your support!',
+  // Text to display in the page footer (HTML elements can be used here).
+  footerText: `
+    Medito Foundation or in Dutch, Stichting Medito Non-profit organisation registered in the
+    Netherlands 🇳🇱 hi@meditofoundation.org - KvK-nummer: 75284251 - RSIN: 860222627
+  `
 }
