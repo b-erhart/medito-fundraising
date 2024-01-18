@@ -1,17 +1,17 @@
 <template>
-  <div v-if="submitted" class="m-[1px] mb-3 flex flex-row items-center gap-2 text-green-500">
+  <div v-if="submitted" class="text-accent-500 m-[1px] mb-3 flex flex-row items-center gap-2">
     <p>Message sent. Thank you for your questions - we will get back to you as soon as we can.</p>
   </div>
   <template v-else>
-    <div class="mb-3 flex flex-col text-gray-300">
+    <div class="text-base-300 mb-3 flex flex-col">
       <label>Email address*</label>
       <input
         v-model="email"
         placeholder="..."
-        class="form-input m-[1px] mt-1 rounded-md border-none bg-gray-800 shadow ring-1 ring-gray-600 focus:ring-gray-200 md:w-1/2"
+        class="bg-base-800 ring-base-600 focus:ring-base-200 form-input m-[1px] mt-1 rounded-md border-none shadow ring-1 md:w-1/2"
         :class="
           emailIsValid || email === ''
-            ? 'ring-gray-600 focus:ring-gray-200'
+            ? 'ring-base-600 focus:ring-base-200'
             : 'ring-red-500 focus:ring-red-200'
         "
       />
@@ -19,16 +19,16 @@
         >Invalid email address</span
       >
     </div>
-    <div class="mb-3 flex flex-col text-gray-300">
+    <div class="text-base-300 mb-3 flex flex-col">
       <label>Your questions*</label>
       <textarea
         v-model="questionsMessage"
         ref="questionsTextarea"
         placeholder="Dear medito team, ..."
-        class="scrollbar-hidden form-textarea m-[1px] mt-1 resize-none rounded-md border-none bg-gray-800 shadow ring-1 ring-gray-600 focus:ring-gray-200"
+        class="scrollbar-hidden bg-base-800 ring-base-600 focus:ring-base-200 form-textarea m-[1px] mt-1 resize-none rounded-md border-none shadow ring-1"
         :class="
           questionIsValid || questionsMessage === ''
-            ? 'ring-gray-600 focus:ring-gray-200'
+            ? 'ring-base-600 focus:ring-base-200'
             : 'ring-red-500 focus:ring-red-300'
         "
       />
@@ -39,7 +39,7 @@
     <button
       :disabled="!emailIsValid || !questionIsValid"
       @click="submit()"
-      class="relative mb-3 mt-2 h-10 w-full rounded-lg border-none bg-green-600 px-3 hover:bg-green-700 disabled:bg-green-900 disabled:text-gray-400 md:w-fit"
+      class="disabled:text-base-400 bg-accent-600 hover:bg-accent-700 disabled:bg-accent-900 relative mb-3 mt-2 h-10 w-full rounded-lg border-none px-3 md:w-fit"
     >
       Send message
     </button>

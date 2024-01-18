@@ -6,10 +6,10 @@
 </template>
 
 <script setup lang="ts">
-import { config } from '@/config'
+import { content } from '@/content'
 
-const title = config.titleSection.title
-const description = config.titleSection.description
+const title = content.titleSection.title
+const description = content.titleSection.description
 </script>
 
 <style scoped></style>

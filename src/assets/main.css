@@ -11,6 +11,6 @@
   }
 
   a {
-    @apply text-green-500 hover:text-green-600 underline;
+    @apply text-accent-500 hover:text-accent-600 underline;
   }
 }

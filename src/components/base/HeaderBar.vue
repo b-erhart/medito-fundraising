@@ -1,6 +1,6 @@
 <template>
   <header
-    class="mb-8 flex h-16 flex-shrink-0 flex-grow-0 flex-row items-center justify-center gap-2 border-b border-b-gray-700"
+    class="border-b-base-700 mb-8 flex h-16 flex-shrink-0 flex-grow-0 flex-row items-center justify-center gap-2 border-b"
   >
     <img src="@/assets/medito-logo.png" alt="Medito logo" class="h-5/6" />
     <div class="flex select-none flex-col align-middle">

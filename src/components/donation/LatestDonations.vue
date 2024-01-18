@@ -1,20 +1,20 @@
 <template>
-  <p class="mb-2 text-sm font-medium text-gray-300">Latest Donations</p>
-  <div class="rounded-lg bg-gray-900 p-3 shadow ring-1 ring-gray-600">
+  <p class="text-base-300 mb-2 text-sm font-medium">Latest Donations</p>
+  <div class="bg-base-900 ring-base-600 rounded-lg p-3 shadow ring-1">
     <LoadingIndicator v-if="!loaded" />
     <template v-else>
       <p v-if="latestDonations.length === 0">No donations yet.</p>
       <template v-else>
         <template v-for="(donation, index) in latestDonations" :key="JSON.stringify(donation)">
           <p class="break-words">
-            <span class="font-medium text-green-500">{{
+            <span class="text-accent-500 font-medium">{{
               formatCurrency(donation.amount, donation.currency)
             }}</span>
             by
             {{ donation.name }}
-            <span class="text-gray-400">· {{ moment(donation.time).fromNow() }}</span>
+            <span class="text-base-400">· {{ moment(donation.time).fromNow() }}</span>
           </p>
-          <hr v-if="index !== latestDonations.length - 1" class="border-1 my-2 border-gray-600" />
+          <hr v-if="index !== latestDonations.length - 1" class="border-1 border-base-600 my-2" />
         </template>
       </template>
     </template>
@@ -28,7 +28,7 @@ import { formatCurrency } from '@/modules/format'
 import LoadingIndicator from '@/components/base/LoadingIndicator.vue'
 import moment from 'moment'
 import { ref, type Ref } from 'vue'
-import { config } from '@/config'
+import { content } from '@/content'
 
 const loaded = ref(false)
 const latestDonations: Ref<Donation[]> = ref([])
@@ -44,7 +44,7 @@ async function update() {
 }
 
 update()
-setInterval(update, config.endpointUpdateInterval)
+setInterval(update, content.endpointUpdateInterval)
 </script>
 
 <style scoped></style>

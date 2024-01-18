@@ -1,4 +1,4 @@
-export interface Config {
+export interface ContentConfig {
   titleSection: {
     title: string
     description: string

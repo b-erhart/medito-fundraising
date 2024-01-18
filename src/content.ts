@@ -1,6 +1,6 @@
-import type { Config } from '@/modules/interfaces'
+import type { ContentConfig } from '@/modules/interfaces'
 
-export const config: Config = {
+export const content: ContentConfig = {
   titleSection: {
     title: 'Translating Our Meditations into 3 New Languages',
     description: ` 

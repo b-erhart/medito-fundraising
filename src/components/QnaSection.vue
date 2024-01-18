@@ -3,7 +3,7 @@
     <h2 class="mb-3 text-center text-2xl font-bold md:text-left">Q&A</h2>
     <AccordionRoot type="multiple" class="flex flex-col">
       <template v-for="qnaEntry in qnas" :key="JSON.stringify(qnaEntry)">
-        <AccordionItem :value="qnaEntry.question" class="border-b border-gray-600">
+        <AccordionItem :value="qnaEntry.question" class="border-base-600 border-b">
           <AccordionHeader>
             <AccordionTrigger
               class="trigger flex w-full flex-row items-center gap-3 py-3 hover:underline"
@@ -13,11 +13,11 @@
             </AccordionTrigger>
           </AccordionHeader>
           <AccordionContent class="animate-content overflow-hidden">
-            <p class="pb-3 text-gray-300">{{ qnaEntry.answer }}</p>
+            <p class="text-base-300 pb-3">{{ qnaEntry.answer }}</p>
           </AccordionContent>
         </AccordionItem>
       </template>
-      <AccordionItem :value="`questions-form-${qnas.length}`" class="border-b border-gray-600">
+      <AccordionItem :value="`questions-form-${qnas.length}`" class="border-base-600 border-b">
         <AccordionHeader>
           <AccordionTrigger
             class="trigger flex w-full flex-row items-center gap-3 py-3 hover:underline"
@@ -46,9 +46,9 @@ import {
   AccordionTrigger
 } from 'radix-vue'
 import { Icon } from '@iconify/vue'
-import { config } from '@/config'
+import { content } from '@/content'
 
-const qnas = config.qnaSection.qnas
+const qnas = content.qnaSection.qnas
 </script>
 
 <style scoped>
