@@ -12,7 +12,7 @@
             }}</span>
             by
             {{ donation.name }}
-            <span class="italic text-gray-400">· {{ moment(donation.time).fromNow() }}</span>
+            <span class="text-gray-400">· {{ moment(donation.time).fromNow() }}</span>
           </p>
           <hr v-if="index !== latestDonations.length - 1" class="border-1 my-2 border-gray-600" />
         </template>

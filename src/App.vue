@@ -18,6 +18,9 @@ import HeaderBar from '@/components/base/HeaderBar.vue'
 import QnaSection from '@/components/QnaSection.vue'
 import RewardsSection from '@/components/RewardsSection.vue'
 import TitleSection from '@/components/TitleSection.vue'
+import { config } from '@/config'
+
+document.title = `Medito Fundraiser | ${config.titleSection.title}`
 </script>
 
 <style scoped></style>
