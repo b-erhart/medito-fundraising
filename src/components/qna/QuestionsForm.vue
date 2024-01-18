@@ -1,5 +1,20 @@
 <template>
-  <div v-if="submitted" class="text-accent-500 m-[1px] mb-3 flex flex-row items-center gap-2">
+  <div v-if="submission === SubmissionStates.LOADING" class="mb-3">
+    <LoadingIndicator />
+  </div>
+  <div
+    v-else-if="submission === SubmissionStates.ERROR"
+    class="m-[1px] mb-3 flex flex-row items-center gap-2 text-red-500"
+  >
+    <p>
+      Sorry, something went wrong while sending your message. Please reload the page and try again
+      later...
+    </p>
+  </div>
+  <div
+    v-else-if="submission === SubmissionStates.SUCCESS"
+    class="text-accent-500 m-[1px] mb-3 flex flex-row items-center gap-2"
+  >
     <p>Message sent. Thank you for your questions - we will get back to you as soon as we can.</p>
   </div>
   <template v-else>
@@ -47,14 +62,22 @@
 </template>
 
 <script setup lang="ts">
+import LoadingIndicator from '../base/LoadingIndicator.vue'
 import { sendQuestions } from '@/endpoints'
 import { useTextareaAutosize } from '@vueuse/core'
 import { validate } from 'email-validator'
 import { computed, ref } from 'vue'
 
+enum SubmissionStates {
+  NONE,
+  LOADING,
+  SUCCESS,
+  ERROR
+}
+
 const email = ref('')
 const { textarea: questionsTextarea, input: questionsMessage } = useTextareaAutosize()
-const submitted = ref(false)
+const submission = ref(SubmissionStates.NONE)
 
 if (!questionsMessage.value) {
   questionsMessage.value = ''
@@ -69,8 +92,10 @@ const questionIsValid = computed(() => {
 })
 
 function submit() {
-  submitted.value = true
+  submission.value = SubmissionStates.LOADING
   sendQuestions(email.value, questionsMessage.value)
+    .then(() => (submission.value = SubmissionStates.SUCCESS))
+    .catch(() => (submission.value = SubmissionStates.ERROR))
 }
 </script>
 

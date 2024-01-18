@@ -23,7 +23,6 @@ export interface ContentConfig {
     }[]
   }
   thankYouMessage: string
-  endpointUpdateInterval: number
 }
 
 export interface FinancialDetails {

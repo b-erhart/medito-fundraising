@@ -29,8 +29,7 @@
 
 <script setup lang="ts">
 import LoadingIndicator from '@/components/base/LoadingIndicator.vue'
-import { content } from '@/content'
-import { getFinancialDetails } from '@/endpoints'
+import { ENDPOINT_UPDATE_INTERVAL, getFinancialDetails } from '@/endpoints'
 import { formatCurrency } from '@/modules/format'
 import { ProgressRoot, ProgressIndicator } from 'radix-vue'
 import { computed, ref } from 'vue'
@@ -50,7 +49,7 @@ async function update() {
 }
 
 update()
-setInterval(update, content.endpointUpdateInterval)
+setInterval(update, ENDPOINT_UPDATE_INTERVAL)
 
 const progress = computed(() => {
   if (moneyDonated.value === 0 && moneyGoal.value === 0) {

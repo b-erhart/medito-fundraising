@@ -82,7 +82,5 @@ export const content: ContentConfig = {
     ]
   },
   // Message to display upon successful donation.
-  thankYouMessage: 'Donation successful. Thank you for your support!',
-  // Interval for updating progress bar and latest donations in milliseconds.
-  endpointUpdateInterval: 5000
+  thankYouMessage: 'Donation successful. Thank you for your support!'
 }

@@ -22,13 +22,12 @@
 </template>
 
 <script setup lang="ts">
-import { getLatestDonations } from '@/endpoints'
+import { ENDPOINT_UPDATE_INTERVAL, getLatestDonations } from '@/endpoints'
 import type { Donation } from '@/modules/interfaces'
 import { formatCurrency } from '@/modules/format'
 import LoadingIndicator from '@/components/base/LoadingIndicator.vue'
 import moment from 'moment'
 import { ref, type Ref } from 'vue'
-import { content } from '@/content'
 
 const loaded = ref(false)
 const latestDonations: Ref<Donation[]> = ref([])
@@ -44,7 +43,7 @@ async function update() {
 }
 
 update()
-setInterval(update, content.endpointUpdateInterval)
+setInterval(update, ENDPOINT_UPDATE_INTERVAL)
 </script>
 
 <style scoped></style>

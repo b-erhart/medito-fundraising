@@ -1,6 +1,6 @@
 <template>
   <p class="text-base-300 mb-2 text-sm font-medium">Donate</p>
-  <form :action="paymentUrl" class="flex w-full flex-col gap-3 sm:flex-row">
+  <form :action="paymentUrl" class="flex w-full flex-col-reverse gap-3 sm:flex-row">
     <div class="relative w-full">
       <div class="bg-donate-glow absolute inset-0 rounded-lg blur-sm"></div>
       <button
