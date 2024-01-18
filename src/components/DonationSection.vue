@@ -12,9 +12,7 @@
     <div>
       <p class="mb-2 text-sm font-medium text-gray-300">Rewards</p>
       <p class="mb-0 mt-0">
-        Check out the
-        <a href="#rewards" class="text-green-500 underline hover:text-green-600">rewards</a> you can
-        receive for donating.
+        Check out the <a href="#rewards">rewards</a> you can receive for donating.
       </p>
     </div>
   </section>
