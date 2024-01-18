@@ -85,7 +85,7 @@ export default {
 }
 ```
 
-**Option 2: Manually define each shade.** Instead of using a predefined color, you can define a shaded color manually. To do this, define the shade's HEX color codes via following attributes in the corresponding color object: `'50'`, `'100'`, `'200'`,`'300'`, `'400'`, `'500'`, `'600'`, `'700'`, `'800'`, `'900'`, `'950'`. The higher the number the darker the shade should be. Example:
+**Option 2: Manually define each shade.** Instead of using a predefined color, you can define a shaded color manually. To do this, define the shades' HEX color codes via following attributes in the corresponding color object: `'50'`, `'100'`, `'200'`,`'300'`, `'400'`, `'500'`, `'600'`, `'700'`, `'800'`, `'900'`, `'950'`. The higher the number the darker the shade should be. Example:
 
 ```ts
 export default {
