@@ -111,9 +111,9 @@ export default {
 
 The website currently only supports Stripe integration via [Stripe Payment Links](https://stripe.com/de/payments/payment-links). Users select a currency on the fundraising page and are redirected to Stripe to enter the donation amount and payment details.
 
-An alternative option would be [Stripe Checkout](https://stripe.com/docs/payments/checkout), allowing users to enter the amount directly on the fundraising page. However, this requires a backend service. Personally, I don't feel like the added complexity and potential costs that this solution brings with it is worth it.
+An alternative option would be [Stripe Checkout](https://stripe.com/docs/payments/checkout), allowing users to enter the amount directly on the fundraising page. However, this requires a backend service.
 
-If you prefer the Checkout variant though, feel free reach out, and I'll be happy to integrate it.
+If you prefer the Checkout variant, feel free reach out, and I'll be happy to integrate it.
 
 ### Setting up Payment Links
 
