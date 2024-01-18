@@ -9,7 +9,7 @@ This is my submission for the Medito Fundation's competition to create a simple 
 - [Configuration](#configuration)
 - [Stripe Integration](#stripe-integration)
 - [Source Code](#source-code)
-- [Feedback and Changes](#feedback-and-change-requests)
+- [Feedback and Change Requests](#feedback-and-change-requests)
 - [License](#license)
 
 ## Overview
