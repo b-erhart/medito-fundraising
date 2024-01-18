@@ -1,7 +1,9 @@
 <template>
   <div class="mb-2 flex flex-row">
     <p class="w-fit flex-shrink-0 flex-grow-0 text-sm font-medium text-gray-300">Progress</p>
-    <p class="block w-full text-right text-sm font-medium text-gray-300">{{ progress }}%</p>
+    <p v-if="loaded" class="block w-full text-right text-sm font-medium text-gray-300">
+      {{ progress }}%
+    </p>
   </div>
   <div class="rounded-lg bg-gray-900 p-3 shadow ring-1 ring-gray-600">
     <LoadingIndicator v-if="!loaded" />
@@ -27,6 +29,7 @@
 
 <script setup lang="ts">
 import LoadingIndicator from '@/components/base/LoadingIndicator.vue'
+import { config } from '@/config'
 import { getFinancialDetails } from '@/endpoints'
 import { formatCurrency } from '@/modules/format'
 import { ProgressRoot, ProgressIndicator } from 'radix-vue'
@@ -47,7 +50,7 @@ async function update() {
 }
 
 update()
-setInterval(update, 5000)
+setInterval(update, config.endpointUpdateInterval)
 
 const progress = computed(() => {
   if (moneyDonated.value === 0 && moneyGoal.value === 0) {

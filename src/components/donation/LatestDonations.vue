@@ -28,6 +28,7 @@ import { formatCurrency } from '@/modules/format'
 import LoadingIndicator from '@/components/base/LoadingIndicator.vue'
 import moment from 'moment'
 import { ref, type Ref } from 'vue'
+import { config } from '@/config'
 
 const loaded = ref(false)
 const latestDonations: Ref<Donation[]> = ref([])
@@ -43,7 +44,7 @@ async function update() {
 }
 
 update()
-setInterval(update, 5000)
+setInterval(update, config.endpointUpdateInterval)
 </script>
 
 <style scoped></style>

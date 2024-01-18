@@ -7,10 +7,9 @@
 
 <script setup lang="ts">
 import { config } from '@/config'
-import { ref } from 'vue'
 
-const title = ref(config.titleSection.title)
-const description = ref(config.titleSection.description)
+const title = config.titleSection.title
+const description = config.titleSection.description
 </script>
 
 <style scoped></style>

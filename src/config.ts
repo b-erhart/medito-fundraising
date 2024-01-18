@@ -14,6 +14,7 @@ export const config: Config = {
       `
   },
   donationSection: {
+    // Define available currencies and their corresponding Stripe Payment Links.
     paymentLinks: [
       {
         currencyDescription: '$ USD',
@@ -79,5 +80,7 @@ export const config: Config = {
           'Our top supportes will receive all the campaign swag we have to offer. Also, you will receive an exclusive campaign baseball cap.'
       }
     ]
-  }
+  },
+  // Interval for updating progress bar and latest donations in milliseconds.
+  endpointUpdateInterval: 5000
 }

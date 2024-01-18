@@ -47,9 +47,8 @@ import {
 } from 'radix-vue'
 import { Icon } from '@iconify/vue'
 import { config } from '@/config'
-import { ref } from 'vue'
 
-const qnas = ref(config.qnaSection.qnas)
+const qnas = config.qnaSection.qnas
 </script>
 
 <style scoped>

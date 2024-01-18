@@ -25,9 +25,8 @@
 
 <script setup lang="ts">
 import { config } from '@/config'
-import { ref } from 'vue'
 
-const rewards = ref(config.rewardsSection.rewards)
+const rewards = config.rewardsSection.rewards
 </script>
 
 <style scoped></style>

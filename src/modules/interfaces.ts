@@ -22,6 +22,8 @@ export interface Config {
       description: string
     }[]
   }
+  /** Update interval for fetching live data from web service endpoints in ms. E.g., for getting latest donations. */
+  endpointUpdateInterval: number
 }
 
 export interface FinancialDetails {

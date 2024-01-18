@@ -25,9 +25,8 @@ import DonationForm from '@/components/donation/DonationForm.vue'
 import LatestDonations from '@/components/donation/LatestDonations.vue'
 import ProgressBar from '@/components/donation/ProgressBar.vue'
 import { config } from '@/config'
-import { ref } from 'vue'
 
-const paymentLinks = ref(config.donationSection.paymentLinks)
+const paymentLinks = config.donationSection.paymentLinks
 </script>
 
 <style scoped></style>
