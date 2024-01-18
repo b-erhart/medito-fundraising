@@ -22,7 +22,7 @@ export interface ContentConfig {
       description: string
     }[]
   }
-  /** Update interval for fetching live data from web service endpoints in ms. E.g., for getting latest donations. */
+  thankYouMessage: string
   endpointUpdateInterval: number
 }
 
